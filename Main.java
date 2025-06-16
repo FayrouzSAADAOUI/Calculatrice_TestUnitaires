@@ -16,7 +16,7 @@ public class Main {
         label.setFont(new Font("Arial", Font.BOLD, 24));
         frame.add(label, BorderLayout.CENTER);
 
-        JButton clickButton = new JButton("Clique clique clique");
+        JButton clickButton = new JButton("Clique");
         clickButton.addActionListener(e -> {
             count++;
             label.setText("Clics : " + count);
