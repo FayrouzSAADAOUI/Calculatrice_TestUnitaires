@@ -1,50 +1,28 @@
 stages:
-  - pre-commit
+  - precommit
   - build
   - test
   - docker
 
-pre-commit:
-  stage: pre-commit
+precommit:
+  stage: precommit
   script:
-    - echo "Pré-commit hooks lancés (ici à personnaliser selon vos hooks)"
-  only:
-    - main
-
-build:
-  stage: build
-  script:
-    - javac Main.java
-  only:
-    - main
-  needs:
-    - pre-commit
-
-test:
-  stage: test
-  script:
-    - echo "Pas de test pour l’instant"
-  only:
-    - main
-  needs:
-    - build
-
-docker:
-  stage: docker
-  script:
-    - docker build -t groupe-ms/tpmanipulationsgit .
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
-    - docker push groupe-ms/tpmanipulationsgit
-  only:
-    - main
-  needs:
-    - test
+    - python -m pre_commit run --all-files
 
 compile:
   stage: build
+  needs: [precommit]
   script:
     - javac Main.java
-  only:
-    - master
-  needs:
-    - precommit
+
+test:
+  stage: test
+  needs: [compile]
+  script:
+    - java Main
+
+docker-build:
+  stage: docker
+  needs: [test]
+  script:
+    - docker build -t compteurclic .
