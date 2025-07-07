@@ -1,27 +1,32 @@
-# Compteur de Clics Java
-
-Ce projet est une application Java simple avec une interface graphique (Swing) qui permet d'incrémenter un compteur à chaque clic sur un bouton, et de le remettre à zéro avec un bouton "Reset". Il inclut également des tests unitaires pour la logique du compteur.
+# Projet Compteur de Clics en Java
 
 ---
 
-## Fichiers principaux
+## Auteur
 
-- `Compteur.java` : la classe qui gère le compteur (logique métier)  
-- `Main.java` : l'interface graphique qui utilise la classe `Compteur`  
-- `CompteurTest.java` : tests unitaires JUnit pour la classe `Compteur`
+Fayrouz Saadaoui
 
 ---
 
 ## Prérequis
 
 - Java JDK 8 ou supérieur  
-- JUnit 5 (pour les tests unitaires)
+- JUnit 5 (téléchargeable sur [https://junit.org/junit5/](https://junit.org/junit5/))  
+- Les fichiers JAR de JUnit doivent être placés dans un dossier `lib/` à la racine du projet.
 
 ---
 
-## Compilation et exécution de l'application graphique
+## Tests unitaires avec JUnit
 
-1. Compile les fichiers :
+Le projet contient un fichier de test `CompteurTest.java` qui teste la classe `Compteur` avec JUnit (framework standard en Java).  
 
-```sh
-javac Compteur.java Main.java
+Les tests vérifient :  
+- `testInitialValue` : que le compteur commence à 0  
+- `testIncrement` : que l’incrémentation fonctionne  
+- `testReset` : que le reset remet bien le compteur à 0  
+
+### Compiler les classes et tests
+Pour compiler : 
+javac -cp ".;lib/*" Compteur.java CompteurTest.java
+Pour tester : 
+java -jar lib\junit-platform-console-standalone-1.10.0.jar --class-path . --scan-class-path
