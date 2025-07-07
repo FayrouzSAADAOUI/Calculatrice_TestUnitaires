@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Main {
-    private int count = 0;
+    private Compteur compteur = new Compteur();
 
     public Main() {
 
@@ -18,13 +18,13 @@ public class Main {
 
         JButton clickButton = new JButton("Clique");
         clickButton.addActionListener(e -> {
-            count++;
-            label.setText("Clics : " + count);
+            compteur.increment();
+            label.setText("Clics : " + compteur.getCount());
         });
 
         JButton resetButton = new JButton("Reset");
         resetButton.addActionListener(e -> {
-            count = 0;
+            compteur.reset();
             label.setText("Clics : 0");
         });
 
